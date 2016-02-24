@@ -1,0 +1,18 @@
+.questions-view
+{
+	.typeform-container {
+	    position: relative;
+	    overflow: hidden;
+	    min-height: 300px;
+	    height: 400px;
+	}
+
+	.typeform-container iframe {
+	    position: absolute;
+	    top:0;
+	    left: 0;
+	    width: 100vw;
+	    height: 400px;
+	    min-height: 300px;
+	}
+}

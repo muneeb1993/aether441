@@ -1,0 +1,92 @@
+.tinder-cards-view
+{
+
+  background: $content-bg;
+
+  td-cards
+  {
+    display: block;
+  }
+
+  td-card
+  {
+    position: absolute;
+    margin-top: 10vh;
+    margin-left: 10vw;
+    width: 80vw;
+    border: .5vh solid #999;
+    box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+    border-radius: 6px;
+    background: white;
+    align-content: center;
+  }
+
+  td-card .image
+  {
+    position: relative;
+  }
+
+  td-card img
+  {
+    width: 80vw;
+  }
+
+  td-card .title
+  {
+    background: #FFF;
+    font-size: 4vh;
+    padding: 1vw;
+    text-transform: capitalize;
+    text-align:center;
+  }
+
+  /* Overlay styling*/
+
+  .overlayBox
+  {
+    position: absolute;
+    height: 80vh;
+    width: 80vw;
+    opacity: 0;
+  }
+
+  .boxed
+  {
+    height: 80vh;
+    width: 80vw;
+    padding: 2vw;
+    border-radius: 1vw;
+    font-size: 2vh;
+  }
+
+  .yes-text
+  {
+    align-content: center;
+  }
+
+  .yesBox
+  {
+    border: 2vh solid $balanced;
+    color: $balanced;
+    -webkit-transform: rotate(-25deg);
+  }
+
+  .no-text
+  {
+    text-align: center;
+  }
+
+  .noBox
+  {
+    border: 2vh solid $assertive;
+    color: $assertive;
+    -webkit-transform: rotate(25deg);
+  }
+
+  .fade
+  {
+    -webkit-transition: 0.2s opacity linear;
+    transition: 0.2s opacity linear;
+    opacity: 0;
+  }
+}

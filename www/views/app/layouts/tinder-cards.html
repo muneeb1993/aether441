@@ -1,0 +1,48 @@
+<ion-view class="tinder-cards-view" cache-view="true">
+  <ion-nav-title>
+    <span>Explore The Aether</span>
+  </ion-nav-title>
+  <ion-content scroll="false">
+
+    <td-cards style='z-index: 5;'>
+      <td-card id="td-card" ng-repeat="card in cards"
+      on-transition-left="transitionLeft(card)"
+      on-transition-right="transitionRight(card)"
+      on-transition-out="transitionOut(card)"
+      on-destroy="cardDestroyed($index)"
+      on-swipe-left="cardSwipedLeft($index)"
+      on-swipe-right="cardSwipedRight($index)"
+      on-partial-swipe="cardPartialSwipe(amt)">
+        <div class="image">
+          <div class="no-text overlayBox">
+            <div class="noBox boxed">
+              BORED
+            </div>
+          </div>
+          <div class="yes-text overlayBox">
+            <div class="yesBox boxed">
+              INSPIRED
+            </div>
+          </div>
+          <div class='idea' ng-style="{'background-color': card.color}"><p>{{card.idea}}</p></div>
+        </div>
+        <div class="title">
+          {{card.id}}
+        </div>
+      </td-card>
+    </td-cards>
+
+    <div id='button_container'>
+      <button id='no_bttn' class='button icon-center ion-close-round' ng-class="{'feedback': check_swipeFeedback()}" ng-click=''>
+      <button id='msg_bttn' class='button icon-center ion-chatboxes' ng-click=''>
+      <button id='yes_bttn' class='button icon-center ion-checkmark-round' ng-class="{'feedback': check_swipeFeedback()}" ng-click=''>
+    </div>
+
+    <div id="no_cards_wrapper" style='margin-top: 10vh; margin-left: 10vw; z-index: 1;'>
+      <div class='idea' style="background-color: #CCC" ng-click='addCards(5)'>
+        No more cards! Tap to reload.
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

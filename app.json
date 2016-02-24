@@ -1,0 +1,7 @@
+{
+    "name": "Aether",
+    "description": "A simple Ionic app for sharing ideas",
+    "repository": "https://github.com/jaffes2/aether",
+    "logo": "http://ionicframework.com/img/ionic-logo-blog.png",
+    "keywords": ["ionic", "devdactic", "whatever"]
+}

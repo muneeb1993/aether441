@@ -25,7 +25,7 @@ angular.module('your_app_name.controllers', [])
 		// 	console.log(value);
 			// $state.go('app.tinder-cards');
 		// });
-		$state.go('app.settings');
+		$state.go('app.tinder-cards');
 	};
 
 	$scope.user = {};

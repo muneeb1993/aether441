@@ -31,7 +31,6 @@ angular.module('your_app_name.controllers', [])
 	  var password = "12345678";
 	  Parse.User.logIn(userName, password, {
 	  success: function(user) {
-		  alert("success");
       $state.go('app.settings');
 		
 	  // Do stuff after successful login.
@@ -561,12 +560,11 @@ angular.module('your_app_name.controllers', [])
     
     card.save(null, {
 	    success: function(results) {
-		  alert("Ride Saved");
-		  window.open("index.html", "_self");
+		    $state.go('app.tinder-cards');
 	    },
 	    error: function(results, error) {
 		  // error is a Parse.Error with an error code and message.
-		  alert('Failed to create new object, with error code: ' + error.message);
+		    $state.go('app.tinder-cards');
 	    }
 	  });
 
@@ -579,12 +577,11 @@ angular.module('your_app_name.controllers', [])
     
     relationship.save(null, {
 	    success: function(results) {
-		  alert("Relationship Saved");
         $state.go('app.tinder-cards');
 	    },
 	    error: function(results, error) {
 		  // error is a Parse.Error with an error code and message.
-		  alert('Failed to create new object, with error code: ' + error.message);
+		    $state.go('app.tinder-cards');
 	    }
 	  });	
 

@@ -475,6 +475,9 @@ angular.module('your_app_name.controllers', [])
 
 	$scope.addFirstCards = function() {
 		$scope.addCard('0', "This is the first card. The rest are pulled from the database.", '0');
+    $scope.addCard('1', "I have an idea to connect homeless shelters with food at the dining halls on campus.", '0');
+    $scope.addCard('2', "I think it would be cool to make a small solar powered heater to place in your coat pocket in order to warm your hands.", '0');
+    $scope.addCard('3', "Looking for an Android developer who can help me implement the chat feature in my app.", '0');
 	};
 
 	if(db_connect)
@@ -560,11 +563,11 @@ angular.module('your_app_name.controllers', [])
     
     card.save(null, {
 	    success: function(results) {
-		    $state.go('app.tinder-cards');
+		    $state.go('app.settings');
 	    },
 	    error: function(results, error) {
 		  // error is a Parse.Error with an error code and message.
-		    $state.go('app.tinder-cards');
+        $state.go('app.settings');
 	    }
 	  });
 
@@ -577,11 +580,11 @@ angular.module('your_app_name.controllers', [])
     
     relationship.save(null, {
 	    success: function(results) {
-        $state.go('app.tinder-cards');
+          $state.go('app.settings');
 	    },
 	    error: function(results, error) {
 		  // error is a Parse.Error with an error code and message.
-		    $state.go('app.tinder-cards');
+		      $state.go('app.settings');
 	    }
 	  });	
 

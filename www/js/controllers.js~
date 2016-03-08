@@ -560,11 +560,11 @@ angular.module('your_app_name.controllers', [])
     
     card.save(null, {
 	    success: function(results) {
-		    $state.go('app.tinder-cards');
+		    $state.go('app.settings');
 	    },
 	    error: function(results, error) {
 		  // error is a Parse.Error with an error code and message.
-		    $state.go('app.tinder-cards');
+        $state.go('app.settings');
 	    }
 	  });
 
@@ -577,11 +577,11 @@ angular.module('your_app_name.controllers', [])
     
     relationship.save(null, {
 	    success: function(results) {
-        $state.go('app.tinder-cards');
+          $state.go('app.settings');
 	    },
 	    error: function(results, error) {
 		  // error is a Parse.Error with an error code and message.
-		    $state.go('app.tinder-cards');
+		      $state.go('app.settings');
 	    }
 	  });	
 

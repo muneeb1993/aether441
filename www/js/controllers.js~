@@ -474,7 +474,38 @@ angular.module('your_app_name.controllers', [])
 	};
 
 	$scope.addFirstCards = function() {
-		$scope.addCard('0', "This is the first card. The rest are pulled from the database.", '0');
+
+
+  var Cards = Parse.Object.extend("Card");
+  var query = new Parse.Query(Cards);
+  query.find({
+    success: function(results) {
+      // alert("Successfully retrieved " + results.length);
+      // Do something with the returned Parse.Object values
+      for (var i = 0; i < results.length; i++) { 
+	    
+    		var object = results[i];
+
+        $scope.addCard(i, object.get("description"), '0');
+		
+  //		cell1.innerHTML = object.get("description");
+
+      }
+    },
+    error: function(error) {
+      alert("Error: " + error.code + " " + error.message);
+    }
+  });
+
+
+
+
+
+
+
+
+
+
 	};
 
 	if(db_connect)
@@ -560,11 +591,11 @@ angular.module('your_app_name.controllers', [])
     
     card.save(null, {
 	    success: function(results) {
-		    $state.go('app.settings');
+		    $state.go('app.tinder-cards');
 	    },
 	    error: function(results, error) {
 		  // error is a Parse.Error with an error code and message.
-        $state.go('app.settings');
+        $state.go('app.tinder-cards');
 	    }
 	  });
 
@@ -577,11 +608,11 @@ angular.module('your_app_name.controllers', [])
     
     relationship.save(null, {
 	    success: function(results) {
-          $state.go('app.settings');
+          $state.go('app.tinder-cards');
 	    },
 	    error: function(results, error) {
 		  // error is a Parse.Error with an error code and message.
-		      $state.go('app.settings');
+		      $state.go('app.tinder-cards');
 	    }
 	  });	
 

@@ -34,7 +34,6 @@ angular.module('your_app_name.controllers', [])
 		  alert("success");
       $state.go('app.settings');
 		
-		  window.open("index.html", "_self");
 	  // Do stuff after successful login.
 	  },
 	  error: function(user, error) {

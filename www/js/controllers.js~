@@ -34,7 +34,6 @@ angular.module('your_app_name.controllers', [])
 		  alert("success");
       $state.go('app.settings');
 		
-		  window.open("index.html", "_self");
 	  // Do stuff after successful login.
 	  },
 	  error: function(user, error) {
@@ -64,7 +63,7 @@ angular.module('your_app_name.controllers', [])
 	$scope.user = {};
 
 	$scope.user.email = "npangori";
-	$scope.user.pin = "12345";
+	$scope.user.pin = "12345678";
 
 	// We need this for the form validation
 	$scope.selected_tab = "";

@@ -82,6 +82,30 @@ angular.module('your_app_name.controllers', [])
 	
   alert($scope.user.email);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $scope.user = {};
+
+	$scope.user.email = "john@doe.com";
+
+	$scope.doSignUp = function(){
+
+
+
+
+    
 /*
   var firstName = "Muneeb";
 	var lastName = "Ahmad";
@@ -112,23 +136,6 @@ angular.module('your_app_name.controllers', [])
 */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-  $scope.user = {};
-
-	$scope.user.email = "john@doe.com";
-
-	$scope.doSignUp = function(){
 		$state.go('app.questions'); //changed this to go to questions
 		//$state.go('app.tinder-cards');
 	};

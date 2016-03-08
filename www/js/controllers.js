@@ -82,34 +82,6 @@ angular.module('your_app_name.controllers', [])
 	
   alert($scope.user.email);
 
-/*
-  var firstName = "Muneeb";
-	var lastName = "Ahmad";
-	var email = "muneebah@umich.edu";
-	var newUser = "muneebah";
-	var newPass = "12345678";
-	var newPassConfirm = "12345678";
-	
-			
-	var user = new Parse.User();
-	user.set("username", newUser);
-	user.set("password", newPass);
-	user.set("email", email);
-	user.set("firstName", firstName);
-	user.set("lastName", lastName);
-	
-	user.signUp(null, {
-	  success: function(user) {
-		// Hooray! Let them use the app now.	
-			// window.open("index.html", "_self");
-		},
-	  error: function(user, error) {
-			// Show the error message somewhere and let the user try again.
-			alert("Error: " + error.code + " " + error.message);
-	  }
-	});
-
-*/
 
 
 
@@ -129,6 +101,41 @@ angular.module('your_app_name.controllers', [])
 	$scope.user.email = "john@doe.com";
 
 	$scope.doSignUp = function(){
+
+
+
+
+        
+    /*
+      var firstName = "Muneeb";
+	    var lastName = "Ahmad";
+	    var email = "muneebah@umich.edu";
+	    var newUser = "muneebah";
+	    var newPass = "12345678";
+	    var newPassConfirm = "12345678";
+	
+			
+	    var user = new Parse.User();
+	    user.set("username", newUser);
+	    user.set("password", newPass);
+	    user.set("email", email);
+	    user.set("firstName", firstName);
+	    user.set("lastName", lastName);
+	
+	    user.signUp(null, {
+	      success: function(user) {
+		    // Hooray! Let them use the app now.	
+			    // window.open("index.html", "_self");
+		    },
+	      error: function(user, error) {
+			    // Show the error message somewhere and let the user try again.
+			    alert("Error: " + error.code + " " + error.message);
+	      }
+	    });
+
+    */
+
+
 		$state.go('app.questions'); //changed this to go to questions
 		//$state.go('app.tinder-cards');
 	};

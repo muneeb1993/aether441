@@ -31,7 +31,6 @@ angular.module('your_app_name.controllers', [])
 	  var password = "12345678";
 	  Parse.User.logIn(userName, password, {
 	  success: function(user) {
-		  alert("success");
       $state.go('app.settings');
 		
 	  // Do stuff after successful login.
@@ -105,35 +104,35 @@ angular.module('your_app_name.controllers', [])
 
 
 
-    
-/*
-  var firstName = "Muneeb";
-	var lastName = "Ahmad";
-	var email = "muneebah@umich.edu";
-	var newUser = "muneebah";
-	var newPass = "12345678";
-	var newPassConfirm = "12345678";
+        
+    /*
+      var firstName = "Muneeb";
+	    var lastName = "Ahmad";
+	    var email = "muneebah@umich.edu";
+	    var newUser = "muneebah";
+	    var newPass = "12345678";
+	    var newPassConfirm = "12345678";
 	
 			
-	var user = new Parse.User();
-	user.set("username", newUser);
-	user.set("password", newPass);
-	user.set("email", email);
-	user.set("firstName", firstName);
-	user.set("lastName", lastName);
+	    var user = new Parse.User();
+	    user.set("username", newUser);
+	    user.set("password", newPass);
+	    user.set("email", email);
+	    user.set("firstName", firstName);
+	    user.set("lastName", lastName);
 	
-	user.signUp(null, {
-	  success: function(user) {
-		// Hooray! Let them use the app now.	
-			// window.open("index.html", "_self");
-		},
-	  error: function(user, error) {
-			// Show the error message somewhere and let the user try again.
-			alert("Error: " + error.code + " " + error.message);
-	  }
-	});
+	    user.signUp(null, {
+	      success: function(user) {
+		    // Hooray! Let them use the app now.	
+			    // window.open("index.html", "_self");
+		    },
+	      error: function(user, error) {
+			    // Show the error message somewhere and let the user try again.
+			    alert("Error: " + error.code + " " + error.message);
+	      }
+	    });
 
-*/
+    */
 
 
 		$state.go('app.questions'); //changed this to go to questions
@@ -561,12 +560,11 @@ angular.module('your_app_name.controllers', [])
     
     card.save(null, {
 	    success: function(results) {
-		  alert("Ride Saved");
-		  window.open("index.html", "_self");
+		    $state.go('app.tinder-cards');
 	    },
 	    error: function(results, error) {
 		  // error is a Parse.Error with an error code and message.
-		  alert('Failed to create new object, with error code: ' + error.message);
+		    $state.go('app.tinder-cards');
 	    }
 	  });
 
@@ -579,12 +577,11 @@ angular.module('your_app_name.controllers', [])
     
     relationship.save(null, {
 	    success: function(results) {
-		  alert("Relationship Saved");
         $state.go('app.tinder-cards');
 	    },
 	    error: function(results, error) {
 		  // error is a Parse.Error with an error code and message.
-		  alert('Failed to create new object, with error code: ' + error.message);
+		    $state.go('app.tinder-cards');
 	    }
 	  });	
 

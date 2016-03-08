@@ -19,7 +19,71 @@ angular.module('your_app_name.controllers', [])
 
 //LOGIN
 .controller('LoginCtrl', function($scope, $state, $templateCache, $q, $rootScope) {
+
+
+
+  $scope.doLogIn = function(){
+    
+//    var userName = $scope.user.email;
+//	  var password = $scope.user.password;
+
+    var userName = "npangori";
+	  var password = "12345678";
+	  Parse.User.logIn(userName, password, {
+	  success: function(user) {
+		  alert("success");
+      $state.go('app.settings');
+		
+		  window.open("index.html", "_self");
+	  // Do stuff after successful login.
+	  },
+	  error: function(user, error) {
+	  // The login failed. Check error to see why.
+		  alert("Incorrect credentials");
+		  return;
+	  }
+	  });			
+
+
+
+
+
+
+    // $http({
+		// 	method: "GET",
+		// 	url: "http://www.salsaia.com/aether/server/login.php",
+		// 	data: $scope.user,
+		// 	headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
+		// }).then(function successCallback(value) {
+		// 	console.log(value);
+			// $state.go('app.tinder-cards');
+		// });
+		//$state.go('app.settings');
+	};
+
+	$scope.user = {};
+
+	$scope.user.email = "npangori";
+	$scope.user.pin = "12345";
+
+	// We need this for the form validation
+	$scope.selected_tab = "";
+
+	$scope.$on('my-tabs-changed', function (event, data) {
+		$scope.selected_tab = data.title;
+	});
+
+})
+
+
+
+// SIGN UP USER
+
+.controller('SignupCtrl', function($scope, $state) {
 	
+  alert($scope.user.email);
+
+/*
   var firstName = "Muneeb";
 	var lastName = "Ahmad";
 	var email = "muneebah@umich.edu";
@@ -46,40 +110,22 @@ angular.module('your_app_name.controllers', [])
 	  }
 	});
 
+*/
 
 
 
 
 
-  $scope.doLogIn = function(){
-		// $http({
-		// 	method: "GET",
-		// 	url: "http://www.salsaia.com/aether/server/login.php",
-		// 	data: $scope.user,
-		// 	headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
-		// }).then(function successCallback(value) {
-		// 	console.log(value);
-			// $state.go('app.tinder-cards');
-		// });
-		$state.go('app.settings');
-	};
 
-	$scope.user = {};
 
-	$scope.user.email = "team@aether.com";
-	$scope.user.pin = "12345";
 
-	// We need this for the form validation
-	$scope.selected_tab = "";
 
-	$scope.$on('my-tabs-changed', function (event, data) {
-		$scope.selected_tab = data.title;
-	});
 
-})
 
-.controller('SignupCtrl', function($scope, $state) {
-	$scope.user = {};
+
+
+
+  $scope.user = {};
 
 	$scope.user.email = "john@doe.com";
 
@@ -487,33 +533,58 @@ angular.module('your_app_name.controllers', [])
 
 // CREATE NEW CARD
 .controller('CreateCardCtrl', function($scope, $http, $state) {
-	$scope.postCard = function($fields){
-		var newCard = {
-			user_id: 1,
-			idea: $fields.idea,
-			hum: Math.round(Math.random()*100),
-		};
-		if(db_connect) {
-			//$http.post('http://www.salsaia.com/aether/api/create_card/' + newCard[0] + '/' + newCard[1] + '/' + newCard[2] ).then(function() {
-			$http({
-				method: "post",
-				url: "http://www.salsaia.com/aether/server/post.php",
-				data: newCard,
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
-			}).then(function successCallback(value) {
-				console.log(value);
-				$fields.idea = '';
-				$state.go('app.tinder-cards');
-			});
-		}
-		// If not connected to database, add to local deck
-		else {
-			newCard.id = localCards.length;
-			localCards.push(newCard);
-			$fields.idea = '';
-			$state.go('app.tinder-cards');
-		}
-	};
+	
+
+  $scope.postCard = function($fields){
+		
+	  var currentUser = Parse.User.current();
+	
+	  if(currentUser){
+	  }
+	  else{
+		  alert("please log in");
+		
+		  return;
+	  }
+
+    var Card = Parse.Object.extend("Card");
+    var card = new Card();
+
+    card.set("postedBy",currentUser.get("email"));
+    card.set("description",$fields.idea);
+    
+    card.save(null, {
+	    success: function(results) {
+		  alert("Ride Saved");
+		  window.open("index.html", "_self");
+	    },
+	    error: function(results, error) {
+		  // error is a Parse.Error with an error code and message.
+		  alert('Failed to create new object, with error code: ' + error.message);
+	    }
+	  });
+
+
+    var Relationship = Parse.Object.extend("Relationship");
+    var relationship = new Relationship();
+
+    relationship.set("postedBy",currentUser.get("email"));
+    relationship.set("description",$fields.idea);
+    
+    relationship.save(null, {
+	    success: function(results) {
+		  alert("Relationship Saved");
+        $state.go('app.tinder-cards');
+	    },
+	    error: function(results, error) {
+		  // error is a Parse.Error with an error code and message.
+		  alert('Failed to create new object, with error code: ' + error.message);
+	    }
+	  });	
+
+  };
+
+
 })
 
 // BOOKMARKS

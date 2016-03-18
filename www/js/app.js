@@ -248,6 +248,7 @@ angular.module('your_app_name', [
   })
 
   // comment
+  // comment 2
   //OTHERS
   .state('app.settings', {
     url: "/settings",

@@ -1,3 +1,7 @@
+Parse.initialize("y7fkUE1YFO489X0F38bKxLvVorVf1cjLkQopJgGk", "pcvflPimQ7TRD8lNoal9BcDSkoq2O9Ih3USsvDW6");
+
+
+
 var db_connect = true;
 var swipe_feedback = false;
 var localCards = [{id: '0', idea: 'This card is from the local storage.', hum: 50}];
@@ -15,8 +19,35 @@ angular.module('your_app_name.controllers', [])
 
 //LOGIN
 .controller('LoginCtrl', function($scope, $state, $templateCache, $q, $rootScope) {
-	$scope.doLogIn = function(){
-		// $http({
+
+
+
+  $scope.doLogIn = function(){
+    
+//    var userName = $scope.user.email;
+//	  var password = $scope.user.password;
+
+    var userName = "npangori";
+	  var password = "12345678";
+	  Parse.User.logIn(userName, password, {
+	  success: function(user) {
+      $state.go('app.settings');
+		
+	  // Do stuff after successful login.
+	  },
+	  error: function(user, error) {
+	  // The login failed. Check error to see why.
+		  alert("Incorrect credentials");
+		  return;
+	  }
+	  });			
+
+
+
+
+
+
+    // $http({
 		// 	method: "GET",
 		// 	url: "http://www.salsaia.com/aether/server/login.php",
 		// 	data: $scope.user,
@@ -25,13 +56,13 @@ angular.module('your_app_name.controllers', [])
 		// 	console.log(value);
 			// $state.go('app.tinder-cards');
 		// });
-		$state.go('app.settings');
+		//$state.go('app.settings');
 	};
 
 	$scope.user = {};
 
-	$scope.user.email = "team@aether.com";
-	$scope.user.pin = "12345";
+	$scope.user.email = "npangori";
+	$scope.user.pin = "12345678";
 
 	// We need this for the form validation
 	$scope.selected_tab = "";
@@ -42,12 +73,68 @@ angular.module('your_app_name.controllers', [])
 
 })
 
+
+
+// SIGN UP USER
+
 .controller('SignupCtrl', function($scope, $state) {
-	$scope.user = {};
+	
+  alert($scope.user.email);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  $scope.user = {};
 
 	$scope.user.email = "john@doe.com";
 
 	$scope.doSignUp = function(){
+
+
+
+
+        
+    /*
+      var firstName = "Muneeb";
+	    var lastName = "Ahmad";
+	    var email = "muneebah@umich.edu";
+	    var newUser = "muneebah";
+	    var newPass = "12345678";
+	    var newPassConfirm = "12345678";
+	
+			
+	    var user = new Parse.User();
+	    user.set("username", newUser);
+	    user.set("password", newPass);
+	    user.set("email", email);
+	    user.set("firstName", firstName);
+	    user.set("lastName", lastName);
+	
+	    user.signUp(null, {
+	      success: function(user) {
+		    // Hooray! Let them use the app now.	
+			    // window.open("index.html", "_self");
+		    },
+	      error: function(user, error) {
+			    // Show the error message somewhere and let the user try again.
+			    alert("Error: " + error.code + " " + error.message);
+	      }
+	    });
+
+    */
+
+
 		$state.go('app.questions'); //changed this to go to questions
 		//$state.go('app.tinder-cards');
 	};
@@ -388,6 +475,9 @@ angular.module('your_app_name.controllers', [])
 
 	$scope.addFirstCards = function() {
 		$scope.addCard('0', "This is the first card. The rest are pulled from the database.", '0');
+    $scope.addCard('1', "I have an idea to connect homeless shelters with food at the dining halls on campus.", '0');
+    $scope.addCard('2', "I think it would be cool to make a small solar powered heater to place in your coat pocket in order to warm your hands.", '0');
+    $scope.addCard('3', "Looking for an Android developer who can help me implement the chat feature in my app.", '0');
 	};
 
 	if(db_connect)
@@ -451,33 +541,56 @@ angular.module('your_app_name.controllers', [])
 
 // CREATE NEW CARD
 .controller('CreateCardCtrl', function($scope, $http, $state) {
-	$scope.postCard = function($fields){
-		var newCard = {
-			user_id: 1,
-			idea: $fields.idea,
-			hum: Math.round(Math.random()*100),
-		};
-		if(db_connect) {
-			//$http.post('http://www.salsaia.com/aether/api/create_card/' + newCard[0] + '/' + newCard[1] + '/' + newCard[2] ).then(function() {
-			$http({
-				method: "post",
-				url: "http://www.salsaia.com/aether/server/post.php",
-				data: newCard,
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
-			}).then(function successCallback(value) {
-				console.log(value);
-				$fields.idea = '';
-				$state.go('app.tinder-cards');
-			});
-		}
-		// If not connected to database, add to local deck
-		else {
-			newCard.id = localCards.length;
-			localCards.push(newCard);
-			$fields.idea = '';
-			$state.go('app.tinder-cards');
-		}
-	};
+	
+
+  $scope.postCard = function($fields){
+		
+	  var currentUser = Parse.User.current();
+	
+	  if(currentUser){
+	  }
+	  else{
+		  alert("please log in");
+		
+		  return;
+	  }
+
+    var Card = Parse.Object.extend("Card");
+    var card = new Card();
+
+    card.set("postedBy",currentUser.get("email"));
+    card.set("description",$fields.idea);
+    
+    card.save(null, {
+	    success: function(results) {
+		    $state.go('app.settings');
+	    },
+	    error: function(results, error) {
+		  // error is a Parse.Error with an error code and message.
+        $state.go('app.settings');
+	    }
+	  });
+
+
+    var Relationship = Parse.Object.extend("Relationship");
+    var relationship = new Relationship();
+
+    relationship.set("postedBy",currentUser.get("email"));
+    relationship.set("description",$fields.idea);
+    
+    relationship.save(null, {
+	    success: function(results) {
+          $state.go('app.settings');
+	    },
+	    error: function(results, error) {
+		  // error is a Parse.Error with an error code and message.
+		      $state.go('app.settings');
+	    }
+	  });	
+
+  };
+
+
 })
 
 // BOOKMARKS

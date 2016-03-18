@@ -1,0 +1,221 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"Device\"><param name=\"browser-package\" value=\"Device\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "res/xml/config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"EmailComposer\"><param name=\"browser-package\" value=\"de.appplant.cordova.emailcomposer.EmailComposer\" /></feature>",
+                            "count": 1
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        },
+        "cordova-plugin-extension": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        },
+        "com.synconset.imagepicker": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        },
+        "cordova-plugin-admobpro": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        },
+        "cordova-plugin-email-composer": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        },
+        "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.startapplabs.ionFullApp"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "file": "plugins/cordova-plugin-device/www/device.js",
+            "id": "cordova-plugin-device.device",
+            "pluginId": "cordova-plugin-device",
+            "clobbers": [
+                "device"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-device/src/browser/DeviceProxy.js",
+            "id": "cordova-plugin-device.DeviceProxy",
+            "pluginId": "cordova-plugin-device",
+            "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+            "id": "cordova-plugin-dialogs.notification",
+            "pluginId": "cordova-plugin-dialogs",
+            "merges": [
+                "navigator.notification"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-dialogs/www/browser/notification.js",
+            "id": "cordova-plugin-dialogs.notification_browser",
+            "pluginId": "cordova-plugin-dialogs",
+            "merges": [
+                "navigator.notification"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
+            "id": "cordova-plugin-globalization.GlobalizationError",
+            "pluginId": "cordova-plugin-globalization",
+            "clobbers": [
+                "window.GlobalizationError"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/www/globalization.js",
+            "id": "cordova-plugin-globalization.globalization",
+            "pluginId": "cordova-plugin-globalization",
+            "clobbers": [
+                "navigator.globalization"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/www/browser/moment.js",
+            "id": "cordova-plugin-globalization.moment",
+            "pluginId": "cordova-plugin-globalization",
+            "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/src/browser/GlobalizationProxy.js",
+            "id": "cordova-plugin-globalization.GlobalizationProxy",
+            "pluginId": "cordova-plugin-globalization",
+            "runs": true
+        },
+        {
+            "file": "plugins/com.synconset.imagepicker/www/imagepicker.js",
+            "id": "com.synconset.imagepicker.ImagePicker",
+            "pluginId": "com.synconset.imagepicker",
+            "clobbers": [
+                "plugins.imagePicker"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+            "id": "cordova-plugin-inappbrowser.inappbrowser",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "clobbers": [
+                "cordova.InAppBrowser.open",
+                "window.open"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-inappbrowser/src/browser/InAppBrowserProxy.js",
+            "id": "cordova-plugin-inappbrowser.InAppBrowserProxy",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "merges": [
+                ""
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-admobpro/www/AdMob.js",
+            "id": "cordova-plugin-admobpro.AdMob",
+            "pluginId": "cordova-plugin-admobpro",
+            "clobbers": [
+                "window.AdMob"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-email-composer/www/email_composer.js",
+            "id": "cordova-plugin-email-composer.EmailComposer",
+            "pluginId": "cordova-plugin-email-composer",
+            "clobbers": [
+                "cordova.plugins.email",
+                "plugin.email"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-email-composer/src/browser/EmailComposerProxy.js",
+            "id": "cordova-plugin-email-composer.EmailComposerProxy",
+            "pluginId": "cordova-plugin-email-composer",
+            "runs": true
+        },
+        {
+            "file": "plugins/com.phonegap.plugins.PushPlugin/www/PushNotification.js",
+            "id": "com.phonegap.plugins.PushPlugin.PushNotification",
+            "pluginId": "com.phonegap.plugins.PushPlugin",
+            "clobbers": [
+                "PushNotification"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
+            "id": "cordova-plugin-splashscreen.SplashScreen",
+            "pluginId": "cordova-plugin-splashscreen",
+            "clobbers": [
+                "navigator.splashscreen"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-splashscreen/src/browser/SplashScreenProxy.js",
+            "id": "cordova-plugin-splashscreen.SplashScreenProxy",
+            "pluginId": "cordova-plugin-splashscreen",
+            "runs": true
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-console": "1.0.2",
+        "cordova-plugin-device": "1.1.1",
+        "cordova-plugin-dialogs": "1.2.0",
+        "cordova-plugin-globalization": "1.0.2",
+        "cordova-plugin-extension": "1.2.9",
+        "com.synconset.imagepicker": "1.0.7",
+        "cordova-plugin-inappbrowser": "1.3.0",
+        "cordova-plugin-admobpro": "2.12.1",
+        "cordova-plugin-whitelist": "1.2.1",
+        "cordova-plugin-email-composer": "0.8.3",
+        "com.phonegap.plugins.PushPlugin": "2.5.0",
+        "ionic-plugin-keyboard": "1.0.8",
+        "cordova-plugin-geolocation": "1.0.1",
+        "cordova-plugin-splashscreen": "2.1.0"
+    }
+}

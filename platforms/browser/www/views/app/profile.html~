@@ -1,0 +1,26 @@
+<ion-view class="profile-view">
+  <ion-nav-title>
+    <span>Profile</span>
+  </ion-nav-title>
+  <ion-content>
+    <div class="top-content row">
+      <div class="profile-container">
+        <div class="user-image-container">
+          <pre-img ratio="_1_1" helper-class="rounded-image">
+            <img class="user-image" ng-src="http://i63.tinypic.com/1218oxi.jpg" spinner-on-load>
+          </pre-img>
+        </div>
+        <div class="user-name">Sarabeth Jaffe</div>
+        <div class="user-twitter">@rachelajaffe</div>
+      </div>
+      <div class="user-background-image-outer">
+        <div multi-bg="['http://i63.tinypic.com/1218oxi.jpg']"></div>
+      </div>
+    </div>
+    <div class="bottom-content">
+      <div class="user-bio">
+        <p>Sup this is filler text</p>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

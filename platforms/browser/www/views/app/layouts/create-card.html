@@ -1,0 +1,30 @@
+<ion-view class="tinder-cards-view">
+  <ion-nav-title>
+	<span>Create The Aether!</span>
+  </ion-nav-title>
+  <ion-content scroll="false">
+
+	  <form name="create_card_form" class="" novalidate ng-cloak>
+
+		<div id="new_idea_wrapper">
+			<div class='idea' style="background-color: #777">
+				<!-- <div class="list"> -->
+					<label class="item item-input" id='new_idea_item'>
+				  		<textarea type="text" placeholder="Share your idea here" name="new_idea" ng-model="create_card_form.idea" required id='new_idea'></textarea>
+					</label>
+				<!-- </div> -->
+			</div>
+		</div>
+
+
+
+		<div class="item item-body bottom-content" style='background-color: transparent; border: 0;'>
+		  <button type="submit" class="button button-positive button-block" ng-click="postCard(create_card_form)" ng-disabled="create_card_form.$invalid">
+			Submit
+		  </button>
+		</div>
+
+	  </form>
+
+  </ion-content>
+</ion-view>

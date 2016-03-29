@@ -9734,12 +9734,11 @@ ion-side-menu .heading-item .message {
   background: #EAEAEA; }
 
 .tinder-cards-view {
-  background: #EAEAEA; }
-  /* Overlay styling*/
+  background: #EAEAEA;
+  /* Overlay styling*/ }
   .tinder-cards-view td-cards {
     display: block; }
   .tinder-cards-view td-card {
-    z-index: 1;
     position: absolute;
     margin-top: 10vh;
     margin-left: 10vw;

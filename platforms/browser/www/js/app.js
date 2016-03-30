@@ -12,12 +12,7 @@ angular.module('your_app_name', [
   'ionic',
   'angularMoment',
   'your_app_name.controllers',
-  'your_app_name.directives',
-  'your_app_name.filters',
   'your_app_name.services',
-  'your_app_name.factories',
-  'your_app_name.config',
-  'your_app_name.views',
   'underscore',
   'ngMap',
   'ngResource',
@@ -27,7 +22,7 @@ angular.module('your_app_name', [
   'youtube-embed'
 ])
 
-.run(function($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $timeout) {
+.run(function($ionicPlatform, $rootScope, $ionicConfig, $timeout) {
 
   $ionicPlatform.on("deviceready", function(){
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -39,7 +34,7 @@ angular.module('your_app_name', [
       StatusBar.styleDefault();
     }
 
-    PushNotificationsService.register();
+    
   });
 
   // This fixes transitions for transparent background views
@@ -88,26 +83,22 @@ angular.module('your_app_name', [
 
   .state('auth.walkthrough', {
     url: '/walkthrough',
-    templateUrl: "views/auth/walkthrough.html"
+    templateUrl: "views/auth/walkthrough.html",
+    controller: 'ButtonCtrl'
   })
 
-  .state('auth.login', {
-    url: '/login',
-    templateUrl: "views/auth/login.html",
-    controller: 'LoginCtrl'
-  })
+  // .state('auth.login', {
+  //   url: '/login',
+  //   templateUrl: "views/auth/login.html",
+  //   controller: 'LoginCtrl'
+  // })
 
-  .state('auth.signup', {
-    url: '/signup',
-    templateUrl: "views/auth/signup.html",
-    controller: 'SignupCtrl'
-  })
 
-  .state('auth.forgot-password', {
-    url: "/forgot-password",
-    templateUrl: "views/auth/forgot-password.html",
-    controller: 'ForgotPasswordCtrl'
-  })
+  // .state('auth.forgot-password', {
+  //   url: "/forgot-password",
+  //   templateUrl: "views/auth/forgot-password.html",
+  //   controller: 'ForgotPasswordCtrl'
+  // })
 
   .state('app', {
     url: "/app",
@@ -116,45 +107,16 @@ angular.module('your_app_name', [
     controller: 'AppCtrl'
   })
 
-  //MISCELLANEOUS
-  .state('app.miscellaneous', {
-    url: "/miscellaneous",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/miscellaneous/miscellaneous.html"
-      }
-    }
-  })
-
-  .state('app.maps', {
-    url: "/miscellaneous/maps",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/miscellaneous/maps.html",
-        controller: 'MapsCtrl'
-      }
-    }
-  })
-
-  .state('app.image-picker', {
-    url: "/miscellaneous/image-picker",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/miscellaneous/image-picker.html",
-        controller: 'ImagePickerCtrl'
-      }
-    }
-  })
-
+  
   //LAYOUTS
-  .state('app.layouts', {
-    url: "/layouts",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/layouts/layouts.html"
-      }
-    }
-  })
+  // .state('app.layouts', {
+  //   url: "/layouts",
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: "views/app/layouts/layouts.html"
+  //     }
+  //   }
+  // })
 
   .state('app.tinder-cards', {
     url: "/layouts/tinder-cards",
@@ -175,97 +137,38 @@ angular.module('your_app_name', [
       }
     }
   })
-
-  .state('app.slider', {
-    url: "/layouts/slider",
+  
+  .state('app.chats', {
+    url: "/layouts/chats",
     views: {
       'menuContent': {
-        templateUrl: "views/app/layouts/slider.html"
+        templateUrl: "views/app/layouts/chat.html",
+        controller: 'ChatsCtrl'
       }
     }
   })
+  
+  
 
-  //FEEDS
-  .state('app.feeds-categories', {
-    url: "/feeds-categories",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/feeds/feeds-categories.html",
-        controller: 'FeedsCategoriesCtrl'
-      }
-    }
-  })
+  // .state('app.slider', {
+  //   url: "/layouts/slider",
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: "views/app/layouts/slider.html"
+  //     }
+  //   }
+  // })
 
-  .state('app.category-feeds', {
-    url: "/category-feeds/:categoryId",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/feeds/category-feeds.html",
-        controller: 'CategoryFeedsCtrl'
-      }
-    }
-  })
+ 
 
-  .state('app.feed-entries', {
-    url: "/feed-entries/:categoryId/:sourceId",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/feeds/feed-entries.html",
-        controller: 'FeedEntriesCtrl'
-      }
-    }
-  })
-
-  //WORDPRESS
-  .state('app.wordpress', {
-    url: "/wordpress",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/wordpress/wordpress.html",
-        controller: 'WordpressCtrl'
-      }
-    }
-  })
-
-  .state('app.post', {
-    url: "/wordpress/:postId",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/wordpress/wordpress_post.html",
-        controller: 'WordpressPostCtrl'
-      }
-    },
-    resolve: {
-      post_data: function(PostService, $ionicLoading, $stateParams) {
-        $ionicLoading.show({
-      		template: 'Loading post ...'
-      	});
-
-        var postId = $stateParams.postId;
-        return PostService.getPost(postId);
-      }
-    }
-  })
-
-  //OTHERS
-  .state('app.settings', {
-    url: "/settings",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/settings.html",
-        controller: 'SettingsCtrl'
-      }
-    }
-  })
-
-  .state('app.forms', {
-    url: "/forms",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/forms.html"
-      }
-    }
-  })
+  // .state('app.forms', {
+  //   url: "/forms",
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: "views/app/forms.html"
+  //     }
+  //   }
+  // })
 
   .state('app.profile', {
     url: "/profile",
@@ -276,24 +179,6 @@ angular.module('your_app_name', [
     }
   })
 
-  .state('app.questions', {
-    url: "/questions",
-    views:{
-      'menuContent': {
-        templateUrl: "views/app/questions.html"
-      }
-    }
-  })
-
-  .state('app.bookmarks', {
-    url: "/bookmarks",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/bookmarks.html",
-        controller: 'BookMarksCtrl'
-      }
-    }
-  })
 
 ;
 

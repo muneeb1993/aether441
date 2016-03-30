@@ -20,8 +20,10 @@
               <img class="user-image" ng-src="http://i63.tinypic.com/1218oxi.jpg" spinner-on-load>
           	</pre-img>
           </div>
-          <h2 class="greeting">Hi Rachel</h2>
+          <div ng-controller="ButtonCtrl">
+          <h2 class="greeting">Hi {{user}}</h2>
           <p class="message">Welcome back</p>
+          </div>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.create-card">
           <i class="icon ion-lightbulb"></i>
@@ -31,37 +33,11 @@
           <i class="icon ion-radio-waves"></i>
           <h2 class="menu-text">Idea Waves</h2>
         </ion-item>
-        <!--<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.bookmarks">
-          <i class="icon ion-bookmark"></i>
-          <h2 class="menu-text">Saved for later</h2>
-        </ion-item> -->
-       <!--  <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.wordpress">
-          <i class="icon ion-social-wordpress"></i>
-          <h2 class="menu-text">Wordpress</h2>
-        </ion-item> -->
-<!--
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.layouts">
-          <i class="icon ion-wand"></i>
-          <h2 class="menu-text">Layouts</h2>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.chats">
+          <i class="icon ion-lightbulb"></i>
+          <h2 class="menu-text">Chats</h2>
         </ion-item>
--->
-<!--
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.miscellaneous">
-          <i class="icon ion-asterisk"></i>
-          <h2 class="menu-text">Miscellaneous</h2>
-        </ion-item>
--->
-      <!--   <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.forms">
-          <i class="icon ion-document"></i>
-          <h2 class="menu-text">Forms</h2>
-        </ion-item> -->
 
-<!--
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.settings">
-          <i class="icon ion-gear-a"></i>
-          <h2 class="menu-text">Settings</h2>
-        </ion-item>
--->
 
     </ion-list>
     </ion-content>

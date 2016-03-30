@@ -148,6 +148,16 @@ angular.module('your_app_name', [
     }
   })
   
+  .state('app.geo', {
+    url: "/layouts/geo",
+    views: {
+      'menuContent': {
+        templateUrl: "views/app/layouts/test.html",
+        controller: 'GeoCtrl'
+      }
+    }
+  })
+  
   
 
   // .state('app.slider', {

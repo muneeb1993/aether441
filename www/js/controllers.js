@@ -92,6 +92,36 @@ angular.module('your_app_name.controllers', [])
 })
 
 
+.controller('GeoCtrl', function($scope, $cordovaGeolocation, GetCards) {
+  
+  console.log("heye neyeeheh");
+
+  var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  console.log("here I ma");
+  $cordovaGeolocation
+    .getCurrentPosition(posOptions)
+    .then(function (position) {
+      var lat  = position.coords.latitude
+      var long = position.coords.longitude
+      console.log(lat);
+      console.log(long);
+      $scope.lat = lat;
+      $scope.long = long;
+    }, function(err) {
+      // error
+    });
+
+  
+
+  var watchOptions = {
+    timeout : 3000,
+    enableHighAccuracy: false // may cause errors if true
+  };
+
+
+ $scope.data = GetCards.all();
+})
+
 
 
 

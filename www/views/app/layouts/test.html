@@ -1,0 +1,16 @@
+<ion-view view-title="Location">
+  <ion-content>
+     <p> Hi </p>
+     <p>{{long}}</p>
+     <p>{{lat}}</p>
+     <p>There</p>
+     <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="datum in data" type="item-text-wrap" href="#">
+        <h2>{{datum.name}}</h2>
+        <p>{{datum.lat}}</p>
+        <p>{{datum.long}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+
+      </ion-item>
+    
+  </ion-content>
+</ion-view>

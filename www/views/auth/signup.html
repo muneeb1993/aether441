@@ -1,30 +1,27 @@
-<ion-view class="signup-view auth-view" cache-view="false">
-  <ion-content scroll="false">
-    <div class="row">
-      <div class="col col-center">
-        <div class="card sign-up-container">
-          <form name="signup_form" class="" novalidate>
-            <div class="item item-body">
-              <label class="item item-input">
-                <input type="email" placeholder="Email" name="user_email" ng-model="user.email" required>
-              </label>
-              <label class="item item-input" show-hide-container>
-                <input type="password" placeholder="Password" name="user_password" ng-model="user.password" required show-hide-input>
-              </label>
-            </div>
-            <div class="item item-body bottom-content">
-              <button type="submit" class="button button-assertive button-block" ng-click="doSignUp()" ng-disabled="signup_form.$invalid">
-                Sign Up
-              </button>
-            </div>
-          </form>
-        </div>      
-        <div class="alternative-actions">
-          <a class="log-in button button-small button-clear button-light" ui-sref="auth.login">
-            Log In
-          </a>
-        </div>
-      </div>
-    </div>
-  </ion-content>
+
+<ion-view title="Signup">
+    <ion-content padding="true" scroll="false" class="has-header">
+        <form>
+            <ion-list>
+                <label class="item item-input">
+                    <span class="input-label">First Name</span>
+                    <input type="text" placeholder="First Name"  ng-model="creds.first_name">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Last Name</span>
+                    <input type="text" placeholder="Last Name" ng-model="creds.last_name">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Username</span>
+                    <input type="text" placeholder="email address" ng-model="creds.email">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Password</span>
+                    <input type="password"  ng-model="creds.password">
+                </label>
+            </ion-list>
+            <button class="button button-stable button-block"
+                    ng-click="signUpUser()">Sign up</button>
+        </form>
+    </ion-content>
 </ion-view>

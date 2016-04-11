@@ -1,0 +1,48 @@
+<ion-view class="connect-view" cache-view="false">
+  <!-- <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons> -->
+  <ion-nav-title>
+    <span>Messages</span>
+  </ion-nav-title>
+  <ion-content>
+
+    <div class="button-bar">
+      <a class="button ion-ios-browsers icon-left" ng-click="inspectCard()">Wall</a>
+      
+      <button class="button ion-flag icon-left" ng-show='!myCard' ng-click=""> Report</button>
+      <button class="button icon ion-trash-b" ng-show='myCard' ng-click=""> Delete</button>
+
+      <button class="button icon ion-bookmark icon-left" ng-class="{'positive': card.saved}" ng-click="card.saved ? removeBookmark() : bookmarkCard()">
+        {{card.saved == true ? 'Saved' : 'Save'}}
+      </button>
+    </div>
+
+  	<ion-list class='list-borderless'>
+      <ion-item class='item-text-wrap' 
+      style='color: #333; font-size: 20px; line-height: 22px; font-weight: bold; border-bottom: solid 2px #AAA;' 
+      ng-style="{'color': card.color}">
+        {{card.idea || 'Please select a card to inspect.'}}
+      </ion-item>
+
+  		<ion-item ng-repeat='message in messages' 
+  			class='item-text-wrap message'>
+  			<p class='ng-class: message.direction'>{{message.text}}</p>
+  		</ion-item>
+  	</ion-list>
+
+  </ion-content>
+
+      <div class='bar bar-footer' style='border-top: solid 1px #CCC;'>
+        <form name='direct_message' class='item-input-inset' style='width: 100%;'
+          novalidate ng-clock>
+              <textarea id='new_text' placeholder="Send a direct message" style='width: 100%; resize: none;' required  
+              ng-model='direct_message.text' 
+              ng-keypress='checkForEnter($event, direct_message)'></textarea>
+
+              <button type="submit" class="button-icon button-positive ion-paper-airplane button-large" 
+              ng-class="{'positive': direct_message.$valid}"
+              ng-click="sendMessage(direct_message)" 
+              ng-disabled="direct_message.$invalid"></button>
+          </form>
+      </div>

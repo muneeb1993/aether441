@@ -11,8 +11,10 @@ angular.module('underscore', [])
 angular.module('your_app_name', [
   'ionic',
   'angularMoment',
-  'your_app_name.controllers',
-  'your_app_name.services',
+  'app.controllers',
+  'app.services',
+  'user.controllers',
+  'user.services',
   'underscore',
   'ngMap',
   'ngResource',
@@ -22,7 +24,7 @@ angular.module('your_app_name', [
   'youtube-embed'
 ])
 
-.run(function($ionicPlatform, $rootScope, $ionicConfig, $timeout) {
+.run(function($ionicPlatform, $rootScope, $ionicConfig, $timeout, $cordovaGeolocation) {
 
   $ionicPlatform.on("deviceready", function(){
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -36,6 +38,7 @@ angular.module('your_app_name', [
 
     
   });
+  
 
   // This fixes transitions for transparent background views
   $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
@@ -66,7 +69,64 @@ angular.module('your_app_name', [
   $ionicPlatform.on("resume", function(){
     PushNotificationsService.register();
   });
+  
 
+  $rootScope.$on('$stateChangeError',
+    function (event, toState, toParams, fromState, fromParams, error) {
+
+        //debugger;
+
+        console.log('$stateChangeError ' + error && (error.debug || error.message || error));
+
+        // if the error is "noUser" the go to login state
+        if (error && error.error === "noUser") {
+            event.preventDefault();
+
+            $state.go('auth.login', {});
+        }
+    });
+  
+  $rootScope.$on("$routeChangeStart", function (event, next, current) {
+    if (sessionStorage.restorestate == "true") {
+        $rootScope.$broadcast('restorestate'); //let everything know we need to restore state
+        sessionStorage.restorestate = false;
+    }
+  });
+
+  //let everthing know that we need to save state now.
+  window.onbeforeunload = function (event) {
+      $rootScope.$broadcast('savestate');
+  };
+  
+  $rootScope.miles = 5;
+  
+  //css folder one file delete get that from the master repo
+
+  var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  console.log("in main run function");
+       $cordovaGeolocation
+         .getCurrentPosition(posOptions)
+           .then(function (position) {
+             console.log(position.coords.latitude);
+             console.log(position.coords.longitude);
+             $rootScope.coordinates = {
+               "lat": position.coords.latitude,
+               "long": position.coords.longitude
+             };
+             
+             $rootScope.lat = position.coords.latitude;
+            
+           }, function(err) {
+         // error
+           });
+        
+ 
+
+})
+
+.value('ParseConfiguration', {
+        applicationId: "y7fkUE1YFO489X0F38bKxLvVorVf1cjLkQopJgGk",
+        javascriptKey: "pcvflPimQ7TRD8lNoal9BcDSkoq2O9Ih3USsvDW6"
 })
 
 
@@ -87,18 +147,19 @@ angular.module('your_app_name', [
     controller: 'ButtonCtrl'
   })
 
-  // .state('auth.login', {
-  //   url: '/login',
-  //   templateUrl: "views/auth/login.html",
-  //   controller: 'LoginCtrl'
-  // })
+  .state('auth.login', {
+    url: '/login',
+    templateUrl: "views/auth/login.html",
+    controller: 'LoginCtrl'
+  })
+  
+  .state('auth.signup', {
+    url: '/signup',
+    templateUrl: "views/auth/signup.html",
+    controller: 'SignUpCtrl'
+  })
 
-
-  // .state('auth.forgot-password', {
-  //   url: "/forgot-password",
-  //   templateUrl: "views/auth/forgot-password.html",
-  //   controller: 'ForgotPasswordCtrl'
-  // })
+//App Controller starts here 
 
   .state('app', {
     url: "/app",
@@ -107,27 +168,7 @@ angular.module('your_app_name', [
     controller: 'AppCtrl'
   })
 
-  
-  //LAYOUTS
-  // .state('app.layouts', {
-  //   url: "/layouts",
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: "views/app/layouts/layouts.html"
-  //     }
-  //   }
-  // })
-
-  .state('app.tinder-cards', {
-    url: "/layouts/tinder-cards",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/layouts/tinder-cards.html",
-        controller: 'TinderCardsCtrl'
-      }
-    }
-  })
-
+//Creating cards
   .state('app.create-card', {
     url: "/layouts/create-card",
     views: {
@@ -138,48 +179,64 @@ angular.module('your_app_name', [
     }
   })
   
-  .state('app.chats', {
-    url: "/layouts/chats",
+//Idea waves
+  .state('app.tinder-cards', {
+    url: "/layouts/tinder-cards",
     views: {
       'menuContent': {
-        templateUrl: "views/app/layouts/chat.html",
-        controller: 'ChatsCtrl'
+        templateUrl: "views/app/layouts/tinder-cards.html",
+        controller: 'TinderCardsCtrl'
+      }
+    }
+  })
+
+//Bookmark contorller
+  .state('app.bookmarks', {
+    url: "/layouts/bookmarks",
+    cache: false,
+    views: {
+      'menuContent': {
+        templateUrl: "views/app/layouts/bookmarks.html",
+        controller: 'BookmarksCtrl'
+      }
+    }
+  })
+
+//Inbox contorller
+  .state('app.inbox', {
+    url: "/layouts/inbox",
+    views: {
+      'menuContent': {
+        templateUrl: "views/app/layouts/inbox.html",
+        controller: 'InboxCtrl'
       }
     }
   })
   
+//Messages controller
+  .state('app.messages', {
+    url: "/layouts/inbox/:messageId",
+    views: {
+      'menuContent': {
+        templateUrl: "views/app/layouts/messages.html",
+        controller: 'MessageCtrl'
+      }
+    }
+  })
+
+//Settings controller
   .state('app.geo', {
     url: "/layouts/geo",
     views: {
       'menuContent': {
-        templateUrl: "views/app/layouts/test.html",
+        templateUrl: "views/app/layouts/settings.html",
         controller: 'GeoCtrl'
       }
     }
   })
   
   
-
-  // .state('app.slider', {
-  //   url: "/layouts/slider",
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: "views/app/layouts/slider.html"
-  //     }
-  //   }
-  // })
-
- 
-
-  // .state('app.forms', {
-  //   url: "/forms",
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: "views/app/forms.html"
-  //     }
-  //   }
-  // })
-
+//Profile controller
   .state('app.profile', {
     url: "/profile",
     views: {

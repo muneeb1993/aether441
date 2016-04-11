@@ -1,4 +1,4 @@
-<ion-view class="tinder-cards-view" cache-view="true">
+<ion-view class="tinder-cards-view" cache-view="false">
   <ion-nav-title>
     <span>Explore The Aether</span>
   </ion-nav-title>
@@ -27,22 +27,29 @@
           <div class='idea' ng-style="{'background-color': card.color}"><p>{{card.idea}}</p></div>
         </div>
         <div class="title">
-          {{card.id}}
+          {{card.card_ptr}}
         </div>
       </td-card>
     </td-cards>
 
-    <div id='button_container'>
-      <button id='no_bttn' class='button icon-center ion-close-round' ng-class="{'feedback': check_swipeFeedback()}" ng-click=''>
-      <button id='msg_bttn' class='button icon-center ion-chatboxes' ng-click=''>
-      <button id='yes_bttn' class='button icon-center ion-checkmark-round' ng-class="{'feedback': check_swipeFeedback()}" ng-click=''>
-    </div>
+  
+   <!-- <div id='button_container'>-->
+   <!--   <button id='no_bttn' class='button icon-center ion-close-round' ng-class="{'feedback': check_swipeFeedback()}" ng-click='addCards(4)'>-->
+   <!--   <button id='msg_bttn' class='button icon-center ion-chatboxes' ng-click=''>-->
+   <!--   <button id='yes_bttn' class='button icon-center ion-checkmark-round' ng-class="{'feedback': check_swipeFeedback()}" ng-click='addCards(5)'>-->
+   <!--   <button type="submit" class="button button-positive button-block" ng-click="alert()">-->
+			<!--Submit-->
+		 <!-- </button>-->
+   <!-- </div>-->
 
     <div id="no_cards_wrapper" style='margin-top: 10vh; margin-left: 10vw; z-index: 1;'>
       <div class='idea' style="background-color: #CCC" ng-click='addCards(5)'>
         No more cards! Tap to reload.
       </div>
     </div>
-
+    
+    <h1>Withen {{miles}} miles</h1>
+    
   </ion-content>
 </ion-view>
+

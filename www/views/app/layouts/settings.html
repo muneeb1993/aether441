@@ -1,0 +1,25 @@
+<ion-view class="settings-view" cache-view="false">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    
+    <ion-nav-title>
+        <span>Settings</span>
+    </ion-nav-title>
+    
+    <ion-content>
+        <h1>Range</h1>
+        <div class="item range range-positive">
+        <i class="icon ion-ios-sunny-outline"></i>
+        <input type="range" name="range" min="1" max="50" value="{{miles}}" ng-model="range_it" ng-change="change(range_it)" id="range_temp">
+        <i class="icon ion-ios-sunny"></i>
+        </div>
+        <h1>{{miles}}</h1>
+      
+        <div class="item range range-positive">
+    <i class="icon ion-ios-sunny-outline"></i>
+    <input type="range" name="volume" min="0" max="100" value="33">
+    <i class="icon ion-ios-sunny"></i>
+  </div>
+    </ion-content>
+</ion-view>

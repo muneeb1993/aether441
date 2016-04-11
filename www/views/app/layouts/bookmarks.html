@@ -1,8 +1,37 @@
-<ion-view class="tinder-cards-view" cache-view="false">
-  <ion-nav-title>
-    <span>Bookmarks</span>
-  </ion-nav-title>
-  <ion-content scroll="false">
-  
+<ion-view view-title="Bookmarks">
+  <ion-content scroll="true">
+      <!--<ion-refresher pulling-text="Pull to refresh..." on-refresh="doRefresh()"> </ion-refresher>-->
+    <!--<ion-list>-->
+
+    <!--  <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#">-->
+        <!--<img ng-src="{{chat.face}}">-->
+        <!--<h2>{{chat.username}}</h2>-->
+        <!--<p>{{chat.card}}</p>-->
+        <!--<p>{{chat.description}}</p>-->
+        <!--<p>{{chat.by}}</p>-->
+    <!--    <ion-option-button class="button-positive">Share</ion-option-button>-->
+    <!--    <ion-option-button class="button-assertive">Edit</ion-option-button>-->
+    <!--    <i class="icon ion-chevron-right icon-accessory"></i>-->
+
+    <!--  </ion-item>-->
+    <!--</ion-list>-->
+    
+    <ion-list can-swipe="listCanSwipe">
+    <ion-item ng-repeat="bookmark in bookmarks" class="item-thumbnail-left" class="item-remove-animate item-avatar item-icon-right">
+    <img ng-src="{{bookmark.img}}">
+    <h2>{{bookmark.title}}</h2>
+    <p>{{bookmark.description}}</p>
+    <ion-option-button class="button-positive" ng-click="message()">
+    Message
+    </ion-option-button>
+    <ion-option-button class="button-assertive" ng-click="bookmarks.splice($index, 1)">
+    Delete
+    </ion-option-button>
+
+    </ion-item>
+    </ion-list>
+    
   </ion-content>
 </ion-view>
+
+

@@ -287,30 +287,30 @@ angular.module('app.services', [])
                   console.log("in load function");
                   var cards = Parse.Object.extend("Card");
                   var query = new Parse.Query(cards);
-                  query.near("location", userGeoPoint);
-                  query.limit(coordinates.limit);
                   var cards_array = []
                   query.find({
                     success: function(results) {
                       for (var i = 0; i < results.length; i++) {
-                        console.log(results.length);
-                        //if(results[i].get('description') == "") continue;
-                          //$scope.$apply(function (){
-                              var hum = Math.floor((Math.random() * 125) + 1);;
-                              var color = 'rgb(' + (hum*2) + ',130,' + (255-(hum)) + ')';
-                              $input.push(
-                                  {
+                        //console.log("this many aethers " + results.length);
+                        var distance = userGeoPoint.milesTo(results[i].get('location'));
+                        console.log("distance is " + distance);
+                        console.log(results[i].get('description'));
+                        if(distance < coordinates.limit){
+                            var hum = Math.floor((Math.random() * 125) + 1);;
+                            var color = 'rgb(' + (hum*2) + ',130,' + (255-(hum)) + ')';
+                            $input.push(
+                            {
                                     "idea" : results[i].get('description'),
                                     "username" : results[i].get('postedBy'),
                                      "color" : color,
                                      "card_ptr": results[i].id
                                      
-                                  }
-                              );
-                          //console.log(results[i].id);
+                            });
+                        }
+
                         
                       }
-  
+                      console.log("Number of hits " + $input.length);
                     },
                   
                     error: function(error) {

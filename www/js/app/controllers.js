@@ -197,11 +197,17 @@ angular.module('app.controllers', [])
             $scope.exclude_IDs = [];
             console.log("in Tinderctrol");
             //console.log(this);
+            var coordinates = $rootScope.coordinates;
+            coordinates.limit = $rootScope.miles; 
+            $scope.cards = [];
+            $scope.cards = Cards.add(coordinates);
+
             
             $scope.addCards = function($num){
                     console.log("in addCards function");
                     var coordinates = $rootScope.coordinates;
                     coordinates.limit = $rootScope.miles;
+                    console.log("limit is " + coordinates.limit);
                     $scope.cards = Cards.add(coordinates);
                     //$scope.$apply();
                 

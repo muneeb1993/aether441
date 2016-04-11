@@ -20,20 +20,6 @@ angular.module('app.controllers', [])
 // APP
 .controller('AppCtrl', function($scope, $ionicConfig, UserService, $state) {
     
-        // console.log("in appctl function");
-    
-        // $scope.doLogoutAction = function () {
-        //     UserService.logout().then(function () {
-
-        //         // transition to next state
-        //         $state.go('auth.login');
-
-        //     }, function (_error) {
-        //         alert("error logging in " + _error.debug);
-        //     })
-        
-        // };
-        
         $scope.$on('range:updated', function(event,data) {
             // you could inspect the data to see if what you care about changed, or just update your own scope
             //$scope.userInfo = User.getUserInfo()[0];
@@ -46,7 +32,7 @@ angular.module('app.controllers', [])
 
 //Profile controller
 .controller('ButtonCtrl', function($scope, $state){
-	 $scope.user = 'very';
+	 $scope.user = 'User';
 	 console.log("in button controller");
 	 
 	    $scope.$on('range:updated', function(event,data) {
@@ -66,14 +52,14 @@ angular.module('app.controllers', [])
   // To listen for when this page is active (for example, to refresh data),
   // listen for the $ionicView.enter event:
   //
-  $scope.$on('$ionicView.enter', function(e) {
-    $scope.listCanSwipe = true
+//   $scope.$on('$ionicView.enter', function(e) {
+//     $scope.listCanSwipe = true
     $scope.bookmarks = BookmarksService.all();
-    $timeout($scope.bookmarks, 1000);
-    $scope.remove = function(chat) {
-        Chats.remove(chat);
-    };
-  });
+//     $timeout($scope.bookmarks, 1000);
+//     $scope.remove = function(chat) {
+//         Chats.remove(chat);
+//     };
+//   });
 
 })
 
@@ -197,9 +183,11 @@ angular.module('app.controllers', [])
             $scope.exclude_IDs = [];
             console.log("in Tinderctrol");
             //console.log(this);
+            
             var coordinates = $rootScope.coordinates;
             coordinates.limit = $rootScope.miles; 
             $scope.cards = [];
+            
             $scope.cards = Cards.add(coordinates);
 
             
